@@ -26,14 +26,14 @@ main:
 	lea	rcx, val + 8
 	lea	r8, val + 12
 	lea	r9, val + 16
-	sub	rsp, 32
+	sub	rsp, 16			; Note that even if we only need to push a single value, we subtracted 16 as well. ( Stack alignment :) )
 	lea	rax, val + 20
 	mov	[rsp], rax
 	lea	rax, val + 24
 	mov	[rsp + 8], rax
 	xor	eax, eax
 	call	scanf
-	add	rsp, 32
+	add	rsp, 16
 
 
 	lea	rdi, pfmt
@@ -42,14 +42,14 @@ main:
 	mov	ecx, [val + 8]
 	mov	r8d, [val + 12]
 	mov	r9d, [val + 16]
-	sub	rsp, 32
-	mov	eax, [val + 20]
-	mov	[rsp], rax
 	mov	eax, [val + 24]
-	mov	[rsp + 8], rax
+	push rax			; You can also use push instead of (sub + mov)
+	mov	eax, [val + 20]
+	push rax
 	xor	eax, eax
 	call	printf
-	add	rsp, 32
+	pop rax
+	pop rax
 
 
 	xor	eax, eax

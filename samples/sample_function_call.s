@@ -10,7 +10,7 @@ val:    dd  0
 
 section	.text
 
-; Declarint external symbols 'scanf' & 'printf' 
+; Declaring external symbols 'scanf' & 'printf' 
 extern scanf
 extern printf
 

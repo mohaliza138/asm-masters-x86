@@ -23,7 +23,7 @@ main:
 	lea	rdx, array + 4
 	lea	rcx, array + 8
 	lea	r8, array + 12
-	mov eax, 4
+	xor eax, eax			; Total number of xmme registers being used in this call is 0. It's not wrong to use 4 as an upperbound but it's better to use 0 instead.
 	call	scanf
 
 	lea	rdi, pfmt

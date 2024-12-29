@@ -20,6 +20,8 @@ main:
     mov rax, 1         ; Syscall number for write
     mov rdi, 1         ; File descriptor: STDOUT
     lea rsi, buffer    ; Address of buffer
+    ; When the input is less than 128 bytes, several zero bytes are written to stdout.
+    ; These zeros aren't visible in the terminal but can be seen using tools like hexdump or xxd.
     mov rdx, 128       ; Length of the buffer
     syscall            ; Invoke the system call
 
