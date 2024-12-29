@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+nasm -felf64 -o $1.o $1.s
+gcc -z noexecstack -m64 -pipe -static -no-pie -std=c17 -o $1 $1.o
+./$1
+rm $1.o $1
